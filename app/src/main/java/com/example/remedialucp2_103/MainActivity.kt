@@ -20,8 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             RemedialUCP2_103Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    HomeScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
