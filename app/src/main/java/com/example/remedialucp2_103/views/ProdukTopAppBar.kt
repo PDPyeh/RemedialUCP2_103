@@ -15,7 +15,7 @@ import com.example.remedialucp2_103.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProdukTopAppBar(
+fun BukuTopAppBar(
     title: String,
     canNavigateBack: Boolean,
     modifier: Modifier = Modifier,

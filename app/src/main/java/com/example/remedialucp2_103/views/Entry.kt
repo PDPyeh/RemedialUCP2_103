@@ -25,16 +25,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.remedialucp2_103.R
-import com.example.remedialucp2_103.viewmodel.DetailProduk
+import com.example.remedialucp2_103.viewmodel.DetailBuku
 import com.example.remedialucp2_103.viewmodel.EntryViewModel
-import com.example.remedialucp2_103.viewmodel.UIStateProduk
+import com.example.remedialucp2_103.viewmodel.UIStateBuku
 import com.example.remedialucp2_103.viewmodel.provider.PenyediaViewModel
 import com.example.remedialucp2_103.views.routes.DestinasiEntry
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EntryProdukScreen(
+fun EntryBukuScreen(
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: EntryViewModel = viewModel(factory = PenyediaViewModel.Factory)
@@ -44,18 +45,18 @@ fun EntryProdukScreen(
     Scaffold (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            ProdukTopAppBar(
+            BukuTopAppBar(
                 title = stringResource(DestinasiEntry.titleRes),
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior
             )
         }) { innerPadding ->
-        EntryProdukBody(
-            uiStateProduk = viewModel.uiStateProduk,
-            onProdukValueChange = viewModel::updateUIState,
+        EntryBukuBody(
+            uiStateBuku = viewModel.uiStateBuku,
+            onBukuValueChange = viewModel::updateUIState,
             onSaveClick = {
                 coroutineScope.launch {
-                    viewModel.saveProduk()
+                    viewModel.saveBuku()
                     navigateBack()
                 }
             },
@@ -68,9 +69,9 @@ fun EntryProdukScreen(
 }
 
 @Composable
-fun EntryProdukBody(
-    uiStateProduk: UIStateProduk,
-    onProdukValueChange: (DetailProduk) -> Unit,
+fun EntryBukuBody(
+    uiStateBuku: UIStateBuku,
+    onBukuValueChange: (DetailBuku) -> Unit,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -78,14 +79,14 @@ fun EntryProdukBody(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_large)),
         modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium))
     ) {
-        FormInputProduk(
-            detailProduk = uiStateProduk.detailProduk,
-            onValueChange = onProdukValueChange,
+        FormInputBuku(
+            detailBuku = uiStateBuku.detailBuku,
+            onValueChange = onBukuValueChange,
             modifier = Modifier.fillMaxWidth()
         )
         Button(
             onClick = onSaveClick,
-            enabled = uiStateProduk.isEntryValid,
+            enabled = uiStateBuku.isEntryValid,
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -96,10 +97,10 @@ fun EntryProdukBody(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FormInputProduk(
-    detailProduk: DetailProduk,
+fun FormInputBuku(
+    detailBuku: DetailBuku,
     modifier: Modifier = Modifier,
-    onValueChange: (DetailProduk) -> Unit = {},
+    onValueChange: (DetailBuku) -> Unit = {},
     enabled: Boolean = true
 ){
     Column(
@@ -107,24 +108,24 @@ fun FormInputProduk(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
     ){
         OutlinedTextField(
-            value = detailProduk.nama,
-            onValueChange = {onValueChange(detailProduk.copy(nama=it)) },
+            value = detailBuku.nama,
+            onValueChange = {onValueChange(detailBuku.copy(nama=it)) },
             label = { Text(stringResource(R.string.nama)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
         OutlinedTextField(
-            value = detailProduk.warna,
-            onValueChange = {onValueChange(detailProduk.copy(warna =it))},
+            value = detailBuku.author,
+            onValueChange = {onValueChange(detailBuku.copy(author =it))},
             label = { Text(stringResource(R.string.warna)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
         OutlinedTextField(
-            value = detailProduk.ukuran,
-            onValueChange = {onValueChange(detailProduk.copy(ukuran = it))},
+            value = detailBuku.tahunTerbit,
+            onValueChange = {onValueChange(detailBuku.copy(tahunTerbit = it))},
             label = { Text(text = stringResource(R.string.ukuran)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,

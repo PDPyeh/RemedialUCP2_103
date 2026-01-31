@@ -13,23 +13,23 @@ import com.example.remedialucp2_103.viewmodel.HomeViewModel
 object PenyediaViewModel {
     val Factory = viewModelFactory {
         initializer {
-            HomeViewModel(aplikasiToko().container.repositoriProduk)
+            HomeViewModel(aplikasiBuku().container.repositoriBuku)
         }
 
         initializer {
-            EntryViewModel(aplikasiToko().container.repositoriProduk)
+            EntryViewModel(aplikasiBuku().container.repositoriBuku)
         }
 
         initializer {
             DetailViewModel(
                 this.createSavedStateHandle(),
-                aplikasiToko().container.repositoriProduk
+                aplikasiBuku().container.repositoriBuku
             )
         }
 
         initializer {
             EditViewModel(this.createSavedStateHandle(),
-                aplikasiToko().container.repositoriProduk)
+                aplikasiBuku().container.repositoriBuku)
         }
     }
 }
@@ -38,5 +38,5 @@ object PenyediaViewModel {
  * Fungsi ekstensi query untuk objek [Application] dan mengembalikan sebuah
  * instance dari [AplikasiSiswa].
  */
-fun CreationExtras.aplikasiToko(): AplikasiToko =
-    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as AplikasiToko)
+fun CreationExtras.aplikasiBuku(): AplikasiBuku =
+    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as AplikasiBuku)

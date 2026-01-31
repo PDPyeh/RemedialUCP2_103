@@ -16,7 +16,7 @@ interface KategoriBukuDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(kategoriBuku: KategoriBuku)
 
-    @Query("SELECT * from tblProduk WHERE id = :id")
+    @Query("SELECT * from tblKategoriBuku WHERE id = :id")
     fun getKategoriBuku(id: Int): Flow<KategoriBuku?>
 
     @Update

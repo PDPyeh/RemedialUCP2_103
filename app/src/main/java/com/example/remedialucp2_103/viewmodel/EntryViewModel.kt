@@ -4,68 +4,68 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.remedialucp2_103.repositori.RepositoriProduk
+import com.example.remedialucp2_103.repositori.RepositoriBuku
 import com.example.remedialucp2_103.room.Buku
 
-class EntryViewModel(private val repositoriProduk: RepositoriProduk) : ViewModel() {
+class EntryViewModel(private val repositoriBuku: RepositoriBuku) : ViewModel() {
 
-    var uiStateProduk by mutableStateOf(UIStateProduk())
+    var uiStateBuku by mutableStateOf(UIStateBuku())
         private set
 
     // Fungsi untuk memvalidasi input
-    private fun validasiInput(uiState: DetailProduk = uiStateProduk.detailProduk): Boolean {
+    private fun validasiInput(uiState: DetailBuku = uiStateBuku.detailBuku): Boolean {
         return with(uiState) {
-            nama.isNotBlank() && ukuran.isNotBlank() && warna.isNotBlank() && kategoriProduk.isNotBlank()
+            nama.isNotBlank() && author.isNotBlank() && tahunTerbit.isNotBlank() && kategoriBuku.isNotBlank()
         }
     }
 
-    fun updateUIState(detailProduk: DetailProduk) {
-        uiStateProduk =
-            UIStateProduk(
-                detailProduk = detailProduk,
-                validasiInput(detailProduk)
+    fun updateUIState(detailBuku: DetailBuku) {
+        uiStateBuku =
+            UIStateBuku(
+                detailBuku = detailBuku,
+                validasiInput(detailBuku)
             )
     }
 
     // Fungsi untuk menyimpan data yang di-entry
-    suspend fun saveProduk() {
+    suspend fun saveBuku() {
         if (validasiInput()) {
-            repositoriProduk.insertProduk(uiStateProduk.detailProduk.toProduk())
+            repositoriBuku.insertBuku(uiStateBuku.detailBuku.toBuku())
         }
     }
 }
 
-data class UIStateProduk(
-    val detailProduk: DetailProduk = DetailProduk(),
+data class UIStateBuku(
+    val detailBuku: DetailBuku = DetailBuku(),
     val isEntryValid: Boolean = false
 )
 
-data class DetailProduk(
+data class DetailBuku(
     val id: Int = 0,
     val nama: String = "",
-    val warna: String = "",
-    val ukuran: String = "",
-    val kategoriProduk: String = ""
+    val author: String = "",
+    val tahunTerbit: String = "",
+    val kategoriBuku: String = ""
 )
 
-fun DetailProduk.toProduk(): Buku = Buku(
+fun DetailBuku.toBuku(): Buku = Buku(
     id = id,
     nama = nama,
-    warna = warna,
-    ukuran = ukuran,
-    KategoriProduk = kategoriProduk
+    author = author,
+    tahunTerbit = tahunTerbit,
+    KategoriBuku = kategoriBuku
 )
 
-fun Buku.toUIStateProduk(isEntryValid: Boolean = false): UIStateProduk =
-    UIStateProduk(
-        detailProduk = this.toDetailProduk(),
+fun Buku.toUIStateBuku(isEntryValid: Boolean = false): UIStateBuku =
+    UIStateBuku(
+        detailBuku = this.toDetailBuku(),
         isEntryValid = isEntryValid
     )
 
-fun Buku.toDetailProduk(): DetailProduk = DetailProduk(
+fun Buku.toDetailBuku(): DetailBuku = DetailBuku(
     id = id,
     nama = nama,
-    warna = warna,
-    ukuran = ukuran,
-    KategoriProduk = kategoriProduk
+    author = author,
+    tahunTerbit = tahunTerbit,
+    KategoriBuku = kategoriBuku
 )

@@ -3,8 +3,8 @@ package com.example.remedialucp2_103.viewmodel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.remedialucp2_103.repositori.RepositoriProduk
-import com.example.remedialucp2_103.views.routes.DestinasiDetailProduk
+import com.example.remedialucp2_103.repositori.RepositoriBuku
+import com.example.remedialucp2_103.views.routes.DestinasiDetailBuku
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull
@@ -13,23 +13,23 @@ import kotlinx.coroutines.flow.stateIn
 
 class DetailViewModel (
     savedStateHandle: SavedStateHandle,
-    private val repositoriSiswa: RepositoriProduk
+    private val repositoriBuku: RepositoriBuku
 ) : ViewModel(){
 
-    private val idProduk: Int = checkNotNull(savedStateHandle[DestinasiDetailProduk.itemIdArg])
+    private val idBuku: Int = checkNotNull(savedStateHandle[DestinasiDetailBuku.itemIdArg])
 
-    val uiDetailState: StateFlow<DetailProdukUiState> =
-        repositoriSiswa.getProdukStream(idProduk)
+    val uiDetailState: StateFlow<DetailBukuUiState> =
+        repositoriBuku.getBukuStream(idBuku)
             .filterNotNull()
             .map {
-                DetailProdukUiState(detailProduk = it.toDetailProduk())
+                DetailBukuUiState(detailBuku = it.toDetailBuku())
             }.stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
-                initialValue = DetailProdukUiState()
+                initialValue = DetailBukuUiState()
             )
-    suspend fun deleteProduk(){
-        repositoriSiswa.deleteProduk(uiDetailState.value.detailProduk.toProduk())
+    suspend fun deleteBuku(){
+        repositoriBuku.deleteBuku(uiDetailState.value.detailBuku.toBuku())
     }
 
     companion object {
@@ -40,6 +40,6 @@ class DetailViewModel (
 /**
  * UI state for ItemDetailsScreen
  */
-data class DetailProdukUiState(
-    val detailProduk: DetailProduk = DetailProduk()
+data class DetailBukuUiState(
+    val detailBuku: DetailBuku = DetailBuku()
 )
