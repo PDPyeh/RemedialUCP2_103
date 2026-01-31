@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.remedialucp2_103.repositori.RepositoriBuku
 import com.example.remedialucp2_103.viewmodel.DetailBuku
+import com.example.remedialucp2_103.views.routes.DestinasiDetailBuku
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull
