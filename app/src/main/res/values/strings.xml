@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">RemedialUCP2_103</string>
+    <string name="entry_produk">Tambah Produk</string>
+    <string name="deskripsi_no_item">Tidak ada data Produk. Tap + untuk menambah data</string>
+    <string name="nama">Nama Produk*</string>
+    <string name="warna">Warna Produk*</string>
+    <string name="ukuran">Ukuran Produk*</string>
+    <string name="kategoriproduk">Kategori Produk</string>
+    <string name="nama1">Nama Produk  :</string>
+    <string name="ukuran1">Ukuran :</string>
+    <string name="warna1">Warna :</string>
+    <string name="kategori1">Kategori :</string>
+    <string name="required_field">* required fields</string>
+    <string name="btn_submit">Submit</string>
+    <string name="detail_produk">Detail Produk</string>
+    <string name="edit_produk">Edit Produk</string>
+    <string name="back">Back</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="delete">Hapus</string>
+    <string name="update">Edit</string>
+    <string name="attention">Perhatian</string>
+    <string name="tanya">Apakah anda yakin menghapus ini ?</string>
 </resources>
