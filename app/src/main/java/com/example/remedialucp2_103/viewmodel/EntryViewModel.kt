@@ -53,7 +53,7 @@ fun DetailBuku.toBuku(): Buku = Buku(
     nama = nama,
     author = author,
     tahunTerbit = tahunTerbit,
-    KategoriBuku = kategoriBuku
+    kategoriBuku = kategoriBuku
 )
 
 fun Buku.toUIStateBuku(isEntryValid: Boolean = false): UIStateBuku =
@@ -67,5 +67,5 @@ fun Buku.toDetailBuku(): DetailBuku = DetailBuku(
     nama = nama,
     author = author,
     tahunTerbit = tahunTerbit,
-    KategoriBuku = kategoriBuku
+    kategoriBuku = kategoriBuku
 )
