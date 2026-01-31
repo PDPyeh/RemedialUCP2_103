@@ -9,6 +9,7 @@ import com.example.remedialucp2_103.repositori.AplikasiBuku
 import com.example.remedialucp2_103.viewmodel.DetailViewModel
 import com.example.remedialucp2_103.viewmodel.EntryViewModel
 import com.example.remedialucp2_103.viewmodel.HomeViewModel
+import com.example.remedialucp2_103.viewmodel.EditViewModel
 
 object PenyediaViewModel {
     val Factory = viewModelFactory {
